@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="temp">
+      <template-forms :text="message"> </template-forms>
+    </div>
+    <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+    <script>
+      let Component = {
+        template:
+          '<p> Subject<input type="radio v-model="radioBtn" v-on:click="toggle()"></p>',
+        props: ["text"],
+      };
+      let app2 = new Vue({
+        el: "#temp",
+        components: { "template-forms": Component },
+        data() {
+          return {
+            message: "hi there",
+          };
+        },
+
+        methods: {
+          toggle() {
+            return this.message;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+  <div id="app">
+    <my-component :my-info="message" inline-template>
+      <div>
+        <p> inline-template -{{ myInfo }} </p>
+      </div>
+    </my-component>
+
+    <input type="text" v-model="search" placeholder="search box">
+
+    <p>{{ title | toUpperCase }}</p>
+    <p>{{ body | snippet }}</p>
+  </div>
+  <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+
+  <script>
+    const myComponent = {
+
+
+
+      props: ['myInfo']
+    }
+
+    let Vue2 = new Vue({
+      el: "#app",
+      components: { 'my-component': myComponent },
+      data() {
+        return {
+          message: "Hello World",
+          title: "My sweet samaritan",
+          body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus nobis cupiditate nisi modi! Illum, iusto earum itaque consectetur ex consequuntur cum nostrum facilis porro reiciendis harum maxime enim neque ab?",
+        }
+
+      },
+      filters: {
+        toUpperCase: function (value) {
+          return value.toUpperCase()
+
+        },
+        snippet: function (value) {
+          return value.slice(0, 100)
+        }
+
+      },
+    })
+
+  </script>
+
+</html>
+<!-- <script>
+      const count = { count: 0 };
+      /*const Component = {
+        template: "<div> Hello {{text}} From Local Component </div>",
+        props: ["text"],
+      }; */
+
+      const LocalC = {
+        template: "<div> <button v-on='count +=1'>{{count}}</button</div>",
+        data() {
+          return {
+            count,
+          };
+        },
+      };
+
+      /* Vue.component("global-component", {
+        template: "<div> Hi. It's the  text from global Component </div>",
+      }); */
+
+      new Vue({
+        el: "#app",
+        components: { "new-component": LocalC },
+
+        /*  data() {
+          return {
+            message: "It's a message ih",
+          };
+        },*/
+      });
+    </script> -->
+</body>
+
+</html>

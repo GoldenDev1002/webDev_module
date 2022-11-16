@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!---font awesome cdn-->
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <style>
+        .card {
+
+            width: 200px;
+            height: 400px;
+            background-color: green;
+
+
+        }
+
+        .card_title {
+            display: flex;
+
+        }
+
+        .card_title p:first-child {
+            margin-right: 20px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        #clickD:disabled {
+            background: #dddd;
+        }
+    </style>
+</head>
+
+<body>
+    <nav> </nav>
+    <div id="app2">
+        <div class="card">
+
+            <div class="card_title">
+                <img v-bind:src="lesson.img" />
+                <br />
+                <br />
+                <p>Lesson </p>
+                <p v-text="lesson.subject"></p>
+            </div>
+
+            <div class="card_title">
+                <p>Price </p>
+                <p v-text="lesson.price"></p>
+            </div>
+
+            <div class="card_title">
+                <p>Space </p>
+                <p v-text="lesson.space - cartCount(lesson)"></p>
+            </div>
+
+            <div class="card_title">
+                <p>Location </p>
+                <p v-text="lesson.location"></p>
+            </div>
+
+
+            <div class="card_title">
+                <p>Icon </p>
+                <i v-bind:class="lesson.icon"></i>
+                <p>{{ greet('afternoon') }}</p>
+
+
+            </div>
+
+            <button id="click" v-on:click="add_To_Cart(lesson)" v-if="canAddtoCart(lesson)">Clcik Me</button>
+            <button id="clickD" v-else>Click Me</button>
+            <p>Send as A gift</p><input type="checkbox" name="" id="" v-bind:true-value="lesson.sendGift"
+                v-bind:false-value="lesson.dontSendGift" v-model="lesson.gift">
+            <p>Home</p> <input type="radio" name="" id="" v-model="lesson.method" v-bind:value="lesson.home">
+            <p>Business</p> <input type="radio" name="" id="" v-model="lesson.method" v-bind:value="lesson.business">
+
+
+
+            <p>Chech Ckeckbox</p> <input type="checkbox" name="" id="" v-bind:true-value="lesson.checking"
+                v-bind:false-value="lesson.unchecking" v-model="lesson.checkboxes">
+            <p>Phone</p> <input type="radio" v-model="lesson.communication" v-bind:value="lesson.phone">
+            <p>Email</p> <input type="radio" v-model="lesson.communication" v-bind:value="lesson.email">
+
+
+
+            <p>NEW cHECKbOX</p> <input type="checkbox" name="" id="" v-model="lesson.checking"
+                v-bind:true-value="lesson.check1" v-bind:false-value="lesson.check2">
+            <p>Radio 1</p> <input type="radio" name="" id="" v-model="lesson.radio1" v-bind:value="lesson.Radio1">
+            <p>Radio 2</p> <input type="radio" name="" id="" v-model="lesson.radio1" v-bind:value="lesson.Radio2">
+            <br />
+            <a v-bind:href="website">Click Me Here</a>
+            <div v-html="websiteTag"></div>
+        </div>
+
+
+        <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+        <script>
+            let vue2 = new Vue({
+                el: "#app2",
+                data() {
+                    return {
+                        sitename: "Vue Js Depot",
+
+                        lesson: {
+                            id: 1000,
+                            subject: "Springs",
+                            img: "subjectPic/biology.jpg",
+                            price: 1000,
+                            space: 5,
+                            location: "hendond",
+                            icon: "fa-solid fa-user",
+                            home: "Home is selected",
+                            business: "business is selected",
+                            method: " ",
+                            sendGift: "send as a gift",
+                            dontSendGift: "do not send gift",
+                            checkboxes: "",
+                            checking: "checked box",
+                            unchecking: "unchecked box",
+                            phone: "0908484855656",
+                            email: "emenikejenny2001@gmail.com",
+                            communication: "",
+                            name: "Jenny",
+                            check1: "working very well",
+                            check2: "not working very well",
+                            Radio1: "first input",
+                            Radio2: "second input",
+                            radio1: "click me tooo",
+                            website: "http://www.google.com",
+                            websiteTag: `<a href="http://www.google.com">Look</a>`
+
+
+                        },
+                        cart: [],
+                    }
+
+                },
+
+
+
+                methods: {
+
+                    canAddtoCart(lesson) {
+                        return lesson.space > this.cartCount(lesson)
+                    },
+
+
+
+                    cartCount(lesson) {
+                        let count = 0;
+                        for (var i = 0; i < this.cart.length; i++) {
+                            if (this.cart[i] === lesson) {
+                                count++
+                            }
+                        }
+
+                        return count;
+                    },
+
+                    add_To_Cart(lesson) {
+                        return this.cart.push(lesson);
+                    },
+
+
+                    greet(time) {
+                        return "Good " + time + this.lesson.name
+                    }
+
+                },
+
+                /*  methods: {
+                      canAddtoCart(lesson) {
+                          return lesson.space > this.cartCount(lesson);
+                      },
+                      //pushes item to cart
+                      add_To_Cart(lesson) {
+                          this.cart.push(lesson);
+                      },
+                      //counts the number of lesson's space being added to cart
+                      cartCount(lesson) {
+                          let count = 0;
+                          for (var i = 0; i < this.cart.length; i++) {
+                              if (this.cart[i] === lesson) {
+                                  count++;
+                              }
+                          }
+                          return count;
+                      },
+                  }, */
+
+
+                computed: {
+
+                }
+
+
+
+            })
+        </script>
+        <script type="module" src="./l.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+  <body>
+  <div id="app">
+     <my-component  :num="myNumber" :string="passedString" :even="myNumber" :obj="passedObject"></my-component>            
+  </div>
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+
+  <script>
+    const myComponent = {
+        template: "<div>this is the Number {{ num }} , <br> the string {{ string }}, <br> Is the number even {{ even }}, <br> is it an object {{ obj }}</div>"
+        , 
+    
+    props :{
+
+        num : {
+            type: Number,
+            required: true
+        },
+
+        string: {
+            type: String,
+            default: "Hello World"
+        },
+
+       obj: {
+            type: Object,
+            default:()=> {
+  return {message: "Hello fromObject"}
+            } 
+        },
+
+        even: {
+            validator: (value)  => {
+                return (value %2 === 0)
+            }
+        }
+
+    }
+    } 
+
+    let Vue2 = new Vue({
+        el: "#app",
+        components : {'my-component': myComponent},
+        data(){
+            return{
+                passedString: "Hello from parent",
+                myNumber: 43,
+                passedObject: {message: "passed object"}
+            }
+        }
+    })
+
+  </script>
+</html>
+    <!-- <script>
+      const count = { count: 0 };
+      /*const Component = {
+        template: "<div> Hello {{text}} From Local Component </div>",
+        props: ["text"],
+      }; */
+
+      const LocalC = {
+        template: "<div> <button v-on='count +=1'>{{count}}</button</div>",
+        data() {
+          return {
+            count,
+          };
+        },
+      };
+
+      /* Vue.component("global-component", {
+        template: "<div> Hi. It's the  text from global Component </div>",
+      }); */
+
+      new Vue({
+        el: "#app",
+        components: { "new-component": LocalC },
+
+        /*  data() {
+          return {
+            message: "It's a message ih",
+          };
+        },*/
+      });
+    </script> -->
+  </body>
+</html>
