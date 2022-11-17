@@ -33,7 +33,8 @@ let app = new Vue({
         sortFeature: "",
         sortOption: "",
         ascending : "",
-        descending : ""
+        descending : "",
+        cartIcon: "fa fa-cart-shopping"
 
        
       
@@ -95,6 +96,35 @@ filters: {
 
     ,
 
+
+    removeCart(newCartItem){
+     
+     /* var existingItemInCart = this.cart.find(item => item.lessonId === newCartItem.id);
+      if(existingItemInCart){
+      if(newCartItem.spaces >= 1){
+                      this.cart.splice(this.cart.indexOf(newCartItem), 1);
+      
+                  }else{
+                      --newCartItem.spaces;
+                  }
+      
+                  ++lessons.spaces;
+
+
+
+                }
+      else{
+        console.log("item doesn't exist")
+      } */
+
+      this.cart.splice(this.cart.indexOf(newCartItem), 1);
+      
+      var existingItemInCart = this.cart.find(item => item.id === newCartItem.id);
+      console.log(existingItemInCart);
+      lessons.spaces++
+
+    },
+
     
   
 
@@ -116,19 +146,23 @@ filters: {
 
         function names(){
           let telephone = /^\d{11}$/
-          let tel2 = /^0[0-9]{11}$/
+          let tel2 = /^((\+44)|(0)) ?\d{4} ?\d{6}$/
           let strings =  /[a-zA-Z]/g
           let x = document.getElementById("naming");
           let y = document.getElementById("numbering");
-          
+          console.log("Correct")
 
           
-          if(strings.test(x.value) && telephone.test(y.value) ){
+          if(strings.test(x.value) && tel2.test(y.value)){
             x.style.backgroundColor = "green";
             y.style.backgroundColor = "green";
             x.style.color = "white";
             y.style.color = "white";
-            alert("Correct Details");
+           
+            alert("Form submitted");
+            console.log("Correct3")
+
+           
             
           }
           else{
@@ -136,6 +170,7 @@ filters: {
             y.style.backgroundColor = "red";
             x.style.color = "white";
             y.style.color = "white";
+           
           }
 
          /* if(telephone.test(x.value)){
@@ -152,9 +187,7 @@ filters: {
      console.log("it's a string 2")
           } */
 
-          if(strings.test(x.value) && telephone.test(y.value) ){
-            console.log("correct form")
-          }
+          
 
         } 
        
@@ -282,7 +315,10 @@ filters: {
               return lessons.sort((a, b) => a.price - b.price);
             case "availability":
               return lessons.sort(
-                (a, b) => a.spaces - a.count - (b.spaces - b.count)
+                (a, b) => {
+                  if(a.spaces >b.spaces) return -1;
+                  return 1
+                }
               );
           }
         }else if(this.sortOption === "descending"){
@@ -302,7 +338,10 @@ filters: {
               return lessons.sort((a, b) => b.price - a.price);
             case "availability":
               return lessons.sort(
-                (a, b) => (b.spaces - b.count )- (a.spaces - a.count)
+                (a, b) => {
+                  if(a.spaces > b.spaces) return 1;
+                  return -1
+                }
               );
           }
         }

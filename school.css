@@ -69,3 +69,19 @@
   width: 200px;
   background-color: pink;
 }
+
+.position{
+  position: absolute;
+  right: 20px;
+}
+
+#cartSection{
+  display: flex;
+  width: 90%;
+  height: 90%;;
+  padding: 2rem;
+}
+
+input[type="text"]:focus{
+background-color:  lightblue;
+}

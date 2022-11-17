@@ -40,7 +40,7 @@
           </form>
         </div>
         <div class="col-md-2">
-          <button v-on:click="showButton"> Add to cart {{ cartItem }}</button>
+          <button v-on:click="showButton" v-bind:class="cartIcon"> Add to cart {{ cartItem }}</button>
         </div>
       </div>
     </nav>
@@ -61,14 +61,15 @@
                 </div>
                 <div class="card-body">
 
-                  <h5 class="card-title"> {{ lesson.subject }}
+                  <b>Subject:</b> {{ lesson.subject }} <i v-bind:class="lesson.icon" class="fa-2x position"></i>
                 </div>
-                <div class="card-text mb-0">{{ lesson.location }}</div>
-                <div class="card-text mb-0">{{ lesson.price }}</div>
+                <div class="card-text mb-0"> <b>Location :</b>{{ lesson.location }}</div>
+                <div class="card-text mb-0"> <b>Price :</b>{{ lesson.price }}</div>
 
-                <div class="card-text mb-0">{{ lesson.spaces }}</div>
+                <div class="card-text mb-0"> <b>Spaces :</b>{{ lesson.spaces }}</div>
                 <!---find a way to map, shopping cart vue js functionality-->
-                <button class="btn btn-warning" v-on:click="addToCart(lesson)" v-if="canAddToCart(lesson)">Add to
+                <button type="button" class="btn btn-warning" v-on:click="addToCart(lesson)"
+                  v-if="canAddToCart(lesson)">Add to
                   cart</button>
                 <button v-else>Add to cart</button>
               </div>
@@ -110,7 +111,7 @@
     </div>
     <!-- cart page -->
     <div v-else>
-      <div class="row">
+      <div class="row" id="cartSection">
         <div class="col-md-6 col-lg-4" v-for="cartItem in cart">
           <div class="card mb-2 cards">
             <img :src="cartItem.lesson.img" alt="cartItem.lesson.subject" class="card-img-top">
@@ -119,24 +120,26 @@
             </div>
             <div class="card-body">
 
-              <h5 class="card-title"> {{ cartItem.lesson.subject }}
+              <h5 class="card-title"> <b>Subject :</b>{{ cartItem.lesson.subject }}
             </div>
-            <div class="card-text mb-0">{{ cartItem.lesson.location }}</div>
-            <div class="card-text mb-0">{{ cartItem.lesson.price }}</div>
-            <div class="card-text mb-0">{{ cartItem.spaces }}</div> /
+            <div class="card-text mb-0"><b>Location :</b>{{ cartItem.lesson.location }}</div>
+            <div class="card-text mb-0"><b>Price :</b>{{ cartItem.lesson.price }}</div>
+            <div class="card-text mb-0"><b>Spaces :</b>{{ cartItem.spaces }}</div>
             <!---find a way to map, shopping cart vue js functionality-->
-            <button class="btn btn-warning" v-on:click="addToCart(cartItem)">Remove from cart
-              cart</button>
+            <button class="btn btn-warning" v-on:click="removeCart(cartItem)">Remove from cart</button>
           </div>
         </div>
 
         <div class="row">
+          <h2>Checkout Details</h2>
           <div class="col-md-4">
-            <input v-model.trim="nameInput" placeholder="Name" name="strings" id="naming">
+            <label for="name">Name</label><br />
+            <input type="text" v-model.trim="nameInput" placeholder="Name" name="strings" id="naming">
           </div>
 
           <div class="col-md-4">
-            <input v-model.number.trim="numberInput" placeholder="Phone Number" name="telephone" id="numbering">
+            <label for="name">Number</label><br />
+            <input type="text" v-model.number="numberInput" placeholder="Phone Number" name="telephone" id="numbering">
           </div>
 
           <p> {{ typeof(numberInput) }} {{ typeof(nameInput) }}</p>
@@ -159,7 +162,7 @@
   </main>
 
   <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
-  <script type="module" src="./main.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 
 </html>

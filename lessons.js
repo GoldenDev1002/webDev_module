@@ -6,7 +6,8 @@
         price: 1000,
         spaces: 5,
         img: "subjectPic/english.jpg",
-        icon: "fa fa-english"
+        icon: "fa fa-arrow-down-a-z",
+        
         
       },
   
@@ -16,7 +17,8 @@
         price: 2000,
         spaces: 5,
         img: "subjectPic/history.jpg",
-        icon: "fa fa-calculator"
+        icon : "fa fa-scroll",
+        
       },
   
       {  id: 1003,
@@ -25,7 +27,7 @@
         price: 2500,
         spaces: 5,
         img: "subjectPic/literature.jpg",
-        icon: "fa fa-calculator"
+        icon: "fa fa-book"
       },
       {id: 1004,
         subject: "Biology",
@@ -33,7 +35,7 @@
         price: 2500,
         spaces: 5,
         img: "subjectPic/biology.jpg",
-        icon: "fa fa-calculator"
+        icon: "fa fa-seedling"
       },
   
       {
@@ -43,7 +45,7 @@
         price: 2400,
         spaces: 5,
         img: "subjectPic/chemistry.jpg",
-        icon: "fa fa-calculator"
+        icon: "fa fa-flask-vial"
       },
   
       {
@@ -53,7 +55,7 @@
         price: 2500,
         spaces: 5,
         img: "subjectPic/physics.png",
-        icon: "fa fa-physics"
+        icon: "fa fa-atom"
       },
   
       {
@@ -63,7 +65,7 @@
         price: 3000,
         spaces: 5,
         img: "subjectPic/economics.jpg",
-        icon: "fa fa-money"
+        icon: "fa fa-coins"
       },
 
 
@@ -74,7 +76,7 @@
         price: 3000,
         spaces: 5,
         img: "subjectPic/chemistry.jpg",
-        icon: "fa fa-science"
+        icon: "fa fa-flask-vial"
       },
 
       {id: 1009,
@@ -83,7 +85,7 @@
         price: 2400,
         spaces: 5,
         img: "subjectPic/biology.jpg",
-        icon: "fa fa-biology"
+        icon: "fa fa-seedling"
       },
 
       
